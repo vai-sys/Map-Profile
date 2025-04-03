@@ -42,35 +42,37 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    
-    const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ message: 'Invalid credentials' });
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and password are required" });
+    }
 
-   
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ message: "Invalid credentials" });
+
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
+    if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
     const token = jwt.sign(
       { userId: user._id, role: user.role },
       process.env.JWT_SECRET,
-      { expiresIn: '1h' }
+      { expiresIn: "1h" }
     );
 
- 
-    res.cookie('auth_token', token, {
+    res.cookie("auth_token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Strict",
       maxAge: 3600000,
     });
 
-  
-    return res.json({ message: 'Login successful', token });
+    return res.json({ message: "Login successful", token });
 
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: "Server error" });
   }
 };
+
 
 const logout = (req, res) => {
   res.clearCookie('auth_token');
@@ -78,6 +80,27 @@ const logout = (req, res) => {
 };
 
 
+const getMe = async (req, res) => {
+  try {
+      console.log(req.user);
+    if (!req.user || !req.user.userId) {
+      return res.status(400).json({ message: "User ID not provided" });
+    }
+
+    const user = await User.findById(req.user.userId).select("-password");
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
 module.exports={
-register,login ,logout
+register,login ,logout,getMe
 }
