@@ -87,3 +87,7 @@ npm start
 - **OpenCage API** is used for converting addresses into latitude and longitude.
 - **Leaflet** is used to display the location on a map.
 
+![Screenshot 2025-04-03 165647](https://github.com/user-attachments/assets/0ea1030e-063a-4659-b310-15e6940d10a7)
+![Screenshot 2025-04-03 165629](https://github.com/user-attachments/assets/84d3a86e-7f3f-4383-953e-74cdc7eca6c4)
+![Screenshot 2025-04-03 165249](https://github.com/user-attachments/assets/869271e0-d05a-4217-8bc6-2416b34c606f)
+![Screenshot 2025-04-03 171541](https://github.com/user-attachments/assets/bd5a9d5b-150e-4a1f-9ab1-12cbc4ec3f8e)
