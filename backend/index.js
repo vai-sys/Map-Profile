@@ -3,7 +3,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const connectDB = require("./config/db");
-
+const path=require("path")
 
 dotenv.config();
 
@@ -21,11 +21,13 @@ app.use(
 app.use(express.json()); 
 app.use(cookieParser()); 
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 
 const authRoutes = require("./routes/authRoutes");
 const profileRoutes=require("./routes/profileRoutes")
 app.use("/api/auth", authRoutes);
-app.use("/api/profile",profileRoutes)
+app.use("/api/profiles",profileRoutes)
 
 
 app.get("/", (req, res) => {
