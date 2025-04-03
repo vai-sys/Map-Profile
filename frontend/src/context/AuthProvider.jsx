@@ -6,11 +6,6 @@ import { useState, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
 import api from "../../services/api";
 
-// const api = axios.create({
-//   baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000",
-//   withCredentials: true,  
-//   timeout: 5000,
-// });
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
