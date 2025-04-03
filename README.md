@@ -1,4 +1,4 @@
-# MERN Project with Context API for Global State Management
+# MERN Project with Map
 
 ## Project Overview
 This is a full-stack web application built using the **MERN (MongoDB, Express, React, Node.js)** stack. The project utilizes **Context API** for global state management.
@@ -32,8 +32,8 @@ This is a full-stack web application built using the **MERN (MongoDB, Express, R
 ## 🔧 Installation & Setup
 ### 1️⃣ Clone the repository:
 ```sh
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
+git clone https://github.com/vai-sys/Map-Profile.git
+cd Map-Profile
 ```
 ### 2️⃣ Install dependencies:
 #### Frontend:
